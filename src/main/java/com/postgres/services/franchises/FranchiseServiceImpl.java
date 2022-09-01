@@ -12,7 +12,12 @@ import com.postgres.repositories.FranchiseRepository;
 @Service
 public class FranchiseServiceImpl implements FranchiseService {
 	
-	private final FranchiseRepository franchiseRepository = null;
+	private final FranchiseRepository franchiseRepository;
+	
+	public FranchiseServiceImpl(FranchiseRepository franchiseRepository) {
+		super();
+		this.franchiseRepository = franchiseRepository;
+	}
 
 	@Override
 	public Franchise findById(Integer id) {
