@@ -1,9 +1,11 @@
 package com.postgres.services.characters;
 
 import java.util.Collection;
-
+import org.springframework.stereotype.Service;
 import com.postgres.models.Characters;
 
+
+@Service
 public class CharacterServiceImpl implements CharacterService{
 
 	@Override
