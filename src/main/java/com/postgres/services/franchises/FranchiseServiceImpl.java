@@ -48,4 +48,16 @@ public class FranchiseServiceImpl implements FranchiseService {
 		
 	}
 
+	@Override
+	public Franchise add(Franchise entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Franchise entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

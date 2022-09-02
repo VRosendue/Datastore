@@ -8,8 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import com.postgres.models.Characters;
 import com.postgres.models.Franchise;
+import com.postgres.models.dto.FranchiseDTO;
 
 @Repository
-public interface FranchiseRepository extends JpaRepository<Franchise, Integer> {
-	public List<Franchise> findAll();
+public interface FranchiseRepository extends JpaRepository<FranchiseDTO, Integer> {
+	public List<FranchiseDTO> findAll();
 }
