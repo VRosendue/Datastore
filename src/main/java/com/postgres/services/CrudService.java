@@ -11,10 +11,9 @@ public interface CrudService<T, ID> {
 	
 	T findById(ID id);
 	Collection<T> findAll();
-	T create(T entity);
+	T create(T newCharacter);
 	T update(T entity);
-	T add(T entity);
-	void deleteById(ID id);
-	void delete(T entity);
+	boolean deleteById(ID id);
+	boolean delete(T entity);
 
 }

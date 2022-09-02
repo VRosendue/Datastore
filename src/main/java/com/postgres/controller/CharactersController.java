@@ -48,16 +48,12 @@ public CharactersController(CharacterService characterService) {
 	}
 	
 	@PostMapping
-	public ResponseEntity add(@RequestBody Characters characters) {
+	public ResponseEntity create(@RequestBody Characters characters) {
 		Characters character = characterService.add(characters);
 		URI location = URI.create("character/" + character.);
 		return ResponseEntity.created(location).build();
 	}
 	
-	@GetMapping("{id}")
-	public ResponseEntity<Characters> create(@PathVariable Integer Id) {
-		return ResponseEntity.ok(characterService.create(null)); //Needs to be double checked
-	}
 	
 	@GetMapping("{id}")
 	public ResponseEntity<Characters> update(@PathVariable Integer T) {

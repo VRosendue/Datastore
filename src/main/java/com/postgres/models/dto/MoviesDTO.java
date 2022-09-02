@@ -2,6 +2,9 @@ package com.postgres.models.dto;
 
 import java.util.Set;
 
+import lombok.Data;
+
+@Data
 public class MoviesDTO {
 
 	private int character_id;
