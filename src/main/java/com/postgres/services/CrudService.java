@@ -1,19 +1,24 @@
 package com.postgres.services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
+import org.hibernate.mapping.List;
 import org.springframework.data.repository.Repository;
+import org.springframework.http.ResponseEntity;
+
+import com.postgres.models.dto.CharactersDTO;
 
 
 
 
 public interface CrudService<T, ID> {
 	
-	T findById(ID id);
-	Collection<T> findAll();
-	T create(T newCharacter);
-	T update(T entity);
-	boolean deleteById(ID id);
-	boolean delete(T entity);
-
+	ResponseEntity<T> findById(ID id);
+	ResponseEntity<ArrayList<T>> findAll();
+	ResponseEntity<T> create(T newCharacter);
+	ResponseEntity<T> update(T entity, ID id);
+	ResponseEntity<T> deleteById(ID id);
+	void delete(T entity);
+	
 }
