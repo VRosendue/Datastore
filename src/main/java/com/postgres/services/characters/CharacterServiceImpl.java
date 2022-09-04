@@ -2,6 +2,7 @@ package com.postgres.services.characters;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.hibernate.annotations.common.util.impl.Log_.logger;
 import org.slf4j.Logger;
@@ -16,14 +17,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.postgres.models.Characters;
 import com.postgres.models.dto.CharactersDTO;
+import com.postgres.models.dto.MovieDTO;
+import com.postgres.models.dto.MoviesDTO;
 import com.postgres.repositories.CharactersRepository;
-import com.postgres.services.HelperService;
+import com.postgres.utils.HelperService;
 
 import no.accelerate.restserverdemo.models.Professor;
 import no.accelerate.restserverdemo.services.professor.ProfessorServiceImpl;
 
 @Service
 public class CharacterServiceImpl implements CharacterService {
+
+	@Autowired
+	private MovieDTO movieDTO;
 
 	@Autowired
 	private CharactersRepository characterRepository;
@@ -101,9 +107,9 @@ public class CharacterServiceImpl implements CharacterService {
 			if ((characterDTO = characterRepository.getReferenceById(id)) != null) {
 				entity = (CharactersDTO) HelperService.partialUpdate(characterDTO, entity);
 				characterDTO = characterRepository.saveAndFlush(entity);
-				httpStatus = httpStatus.OK;
+				httpStatus = HttpStatus.OK;
 			} else {
-				httpStatus = httpStatus.BAD_REQUEST;
+				httpStatus = HttpStatus.BAD_REQUEST;
 				System.out.println("Cant find character");
 			}
 		} catch (Exception e) {
@@ -121,22 +127,17 @@ public class CharacterServiceImpl implements CharacterService {
 
 		try {
 			if ((characterDTO = characterRepository.getReferenceById(id)) != null) {
+				characterDTO.getMovies().forEach(s -> movieDTO.setCharacters(null));
+				characterDTO = characterRepository.saveAndFlush(characterDTO);
 				characterRepository.deleteById(id);
-				httpStatus = httpStatus.OK;
+				httpStatus = HttpStatus.OK;
 			} else {
-				httpStatus = httpStatus.BAD_REQUEST;
+				httpStatus = HttpStatus.BAD_REQUEST;
 			}
 		} catch (Exception e) {
-			httpStatus = httpStatus.INTERNAL_SERVER_ERROR;
+			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 			System.out.println(e.getMessage());
 		}
 		return new ResponseEntity<>(characterDTO, httpStatus);
 	}
-
-	@Override
-	public boolean delete(CharactersDTO entity) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

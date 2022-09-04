@@ -8,6 +8,7 @@ import org.springframework.data.repository.Repository;
 import org.springframework.http.ResponseEntity;
 
 import com.postgres.models.dto.CharactersDTO;
+import com.postgres.models.dto.MovieDTO;
 
 
 
@@ -19,6 +20,5 @@ public interface CrudService<T, ID> {
 	ResponseEntity<T> create(T newCharacter);
 	ResponseEntity<T> update(T entity, ID id);
 	ResponseEntity<T> deleteById(ID id);
-	void delete(T entity);
 	
 }
