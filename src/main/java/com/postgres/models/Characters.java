@@ -2,23 +2,22 @@ package com.postgres.models;
 
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-public class Characters {
+import lombok.Getter;
+import lombok.Setter;
+
+
 	@Entity
+	@Getter
+	@Setter
 	@Table(name = "Characters")
-	public class CharacterC {
+	public class Characters {
 		
 		
 		@Id
-		@GeneratedValue(strategy = GenerationType.AUTO)
-		private int character_id;
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private int characters_id;
 		
 		@Column(name = "full_name", length = 50, nullable = false)
 		private String fullName;
@@ -29,7 +28,7 @@ public class Characters {
 		@Column(name = "gender", length = 10, nullable = false)
 		private String gender;
 		
-		@ManyToMany
+		@ManyToMany(mappedBy = "movieTitle")
 		private Set<Movies> movies;
 		
 		/* @Column(name = "photo", lenght = 10, nullable = false) double check for the photo requirement */
@@ -37,4 +36,3 @@ public class Characters {
 		
 
 	}
-}
